@@ -1,0 +1,75 @@
+# Squirrel settings
+# encoding: utf-8
+
+config_version: '1.0'
+
+keyboard_layout: last
+chord_duration: 0.1
+show_notifications_when: appropriate
+
+style:
+  color_scheme: shefirst_clean
+  candidate_list_layout: linear
+  text_orientation: horizontal
+  inline_preedit: true
+  inline_candidate: false
+  memorize_size: false
+  mutual_exclusive: false
+  translucency: false
+  show_paging: false
+  corner_radius: 6
+  hilited_corner_radius: 5
+  border_height: 5
+  border_width: 7
+  line_spacing: 4
+  spacing: 6
+  shadow_size: 0
+  candidate_format: '[label] [candidate]'
+  font_face: 'PingFang SC'
+  font_point: 17
+  label_font_face: 'SF Pro Text'
+  label_font_point: 11
+
+preset_color_schemes:
+  shefirst_clean:
+    name: 她先·清爽白
+    author: 她先
+    back_color: 0xFFFFFF
+    border_color: 0xE6E3E5
+    text_color: 0x5C565A
+    hilited_text_color: 0x2A2729
+    candidate_text_color: 0x2A2729
+    label_color: 0x9A9498
+    comment_text_color: 0x8A8488
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0xF5E8EF
+    hilited_comment_text_color: 0xF5E8EF
+    hilited_candidate_back_color: 0x794EB2
+
+app_options:
+  com.apple.Spotlight:
+    ascii_mode: true
+  com.alfredapp.Alfred:
+    ascii_mode: true
+  com.runningwithcrayons.Alfred-2:
+    ascii_mode: true
+  com.blacktree.Quicksilver:
+    ascii_mode: true
+  com.apple.Terminal:
+    ascii_mode: true
+    no_inline: true
+  com.googlecode.iterm2:
+    ascii_mode: true
+    no_inline: true
+  org.vim.MacVim:
+    ascii_mode: true
+    no_inline: true
+    vim_mode: true
+  com.apple.dt.Xcode:
+    ascii_mode: true
+  com.microsoft.VSCode:
+    ascii_mode: true
+  com.google.Chrome:
+    inline: true
+  com.microsoft.edgemac:
+    inline: true

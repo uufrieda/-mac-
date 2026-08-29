@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>A new update is available</key>
+	<string>有新版本</string>
+	<key>Check for updates...</key>
+	<string>检查新版本...</string>
+	<key>Deploy</key>
+	<string>重新部署</string>
+	<key>Logs...</key>
+	<string>日志...</string>
+	<key>Rime Wiki...</key>
+	<string>在线文档...</string>
+	<key>Settings...</key>
+	<string>用户设定...</string>
+	<key>Squirrel</key>
+	<string>她先</string>
+	<key>Sync user data</key>
+	<string>同步用户数据</string>
+	<key>Version [version] is now available</key>
+	<string>[version] 现已发布</string>
+	<key>deploy_failure</key>
+	<string>有错误！请查看日志</string>
+	<key>deploy_start</key>
+	<string>部署输入法引擎…</string>
+	<key>deploy_success</key>
+	<string>部署完成。</string>
+	<key>deploy_update</key>
+	<string>更新输入法引擎…</string>
+</dict>
+</plist>

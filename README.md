@@ -8,7 +8,7 @@ GitHub Topic: `shenicest-fission`
 
 - macOS: 1.1.0
 - 安装包: 请在 GitHub Releases 下载 `她先-1.1.0.pkg`
-- SHA-256: `7cdc6774d0367101c1dc934d8a683cac244f12cf33c89c82811664ffdeae2e52`
+- SHA-256: `28b7bec8f1faa24b3f725d1e845c5bbbc2505511a113b9f95b9bda18d0d8fad5`
 - 系统要求: macOS 13.0 或更高版本，支持 Intel 与 Apple 芯片 Mac
 
 ## 她先规则

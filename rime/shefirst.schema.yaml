@@ -1,0 +1,115 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: shefirst
+  name: 她先
+  version: "1.1.0"
+  author:
+    - 她先
+    - Rime Developers
+  description: |
+    女性优先的简体拼音输入方案，支持她先、中性和常规模式。
+  dependencies:
+    - stroke
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - options: [ shefirst_mode, neutral_mode, standard_mode ]
+    reset: 0
+    states: [ 她先, 中性, 常规 ]
+  - name: career_suggestions
+    reset: 1
+    states: [ 职业联想关, 职业联想开 ]
+  - name: positive_suggestions
+    reset: 1
+    states: [ 褒义联想关, 褒义联想开 ]
+  - name: full_shape
+    reset: 0
+    states: [ 半角, 全角 ]
+  - name: zh_simp
+    reset: 1
+    states: [ 漢字, 汉字 ]
+  - name: ascii_punct
+    reset: 0
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - script_translator
+  filters:
+    - simplifier@zh_simp
+    - lua_filter@female_priority_filter
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  algebra:
+    __patch:
+      - pinyin:/abbreviation
+      - pinyin:/spelling_correction
+      - pinyin:/key_correction
+
+translator:
+  dictionary: luna_pinyin
+  prism: shefirst
+  enable_sentence: true
+  enable_user_dict: true
+  enable_encoder: true
+  encode_commit_history: true
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+
+zh_simp:
+  option_name: zh_simp
+
+reverse_lookup:
+  dictionary: stroke
+  enable_completion: true
+  prefix: "`"
+  suffix: "'"
+  tips: 〔笔画〕
+  preedit_format:
+    - xlit/hspnz/一丨丿丶乙/
+
+punctuator:
+  import_preset: symbols
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    punct: '^/([0-9]0?|[A-Za-z]+)$'
+    reverse_lookup: "`[a-z]*'?$"
+
+grammar:
+  language: zh-hant-t-essay-bgw
+  collocation_max_length: 5
+  collocation_min_length: 2
+
+menu:
+  page_size: 7

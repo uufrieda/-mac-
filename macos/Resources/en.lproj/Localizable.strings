@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>deploy_failure</key>
+	<string>Error occurred. Please check log files</string>
+	<key>deploy_start</key>
+	<string>Deploying Rime input method engine.</string>
+	<key>deploy_success</key>
+	<string>SheFirst is ready.</string>
+	<key>deploy_update</key>
+	<string>Deploying Rime for updates.</string>
+</dict>
+</plist>
