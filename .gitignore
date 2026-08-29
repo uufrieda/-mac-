@@ -1,0 +1,13 @@
+.DS_Store
+build/
+assets/*.icns
+assets/*.pdf
+assets/*.png
+dist/*.pkg
+vendor/*.pkg
+*.log
+*.tmp
+*.swp
+*.xcuserstate
+test-user/
+test-staging/

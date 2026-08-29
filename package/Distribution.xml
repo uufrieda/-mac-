@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="1">
+    <title>她先输入法</title>
+    <organization>com.shexian.inputmethod</organization>
+    <domains enable_localSystem="true" enable_currentUserHome="false" enable_anywhere="false"/>
+    <options customize="never" require-scripts="true" hostArchitectures="x86_64,arm64"/>
+    <welcome file="Welcome.html"/>
+    <conclusion file="Conclusion.html"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="com.shexian.inputmethod.SheX"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="com.shexian.inputmethod.SheX" visible="false">
+        <pkg-ref id="com.shexian.inputmethod.SheX"/>
+    </choice>
+    <pkg-ref id="com.shexian.inputmethod.SheX" version="1.1.0" onConclusion="none">shefirst-core.pkg</pkg-ref>
+</installer-gui-script>

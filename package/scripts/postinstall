@@ -1,0 +1,44 @@
+#!/bin/bash
+set -u
+
+console_user=$(/usr/bin/stat -f%Su /dev/console)
+app_root="/Library/Input Methods/她先.app"
+executable="${app_root}/Contents/MacOS/Squirrel"
+deployer="${app_root}/Contents/MacOS/rime_deployer"
+shared_data="${app_root}/Contents/SharedSupport"
+source_id="com.shexian.inputmethod.SheX.Hans"
+
+if [ "${console_user}" != "root" ] && [ "${console_user}" != "loginwindow" ]; then
+    console_uid=$(/usr/bin/id -u "${console_user}")
+    user_home=$(/usr/bin/dscl . -read "/Users/${console_user}" NFSHomeDirectory 2>/dev/null | /usr/bin/awk '{print $2}')
+    user_app="${user_home}/Library/Input Methods/她先.app"
+
+    if [ -n "${user_home}" ] && [ -f "${user_app}/Contents/Info.plist" ]; then
+        user_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' \
+            "${user_app}/Contents/Info.plist" 2>/dev/null || true)
+        if [ "${user_bundle_id}" = "com.shexian.inputmethod.SheX" ]; then
+            /usr/bin/pkill -f "${user_app}/Contents/MacOS/Squirrel" >/dev/null 2>&1 || true
+            /bin/rm -rf "${user_app}"
+        fi
+    fi
+fi
+
+if [ -x "${executable}" ]; then
+    /usr/bin/pkill -f "${executable}" >/dev/null 2>&1 || true
+    "${executable}" --register-input-source >/dev/null 2>&1 || true
+
+    if [ "${console_user}" != "root" ] && [ "${console_user}" != "loginwindow" ]; then
+        if [ -x "${deployer}" ] && [ -n "${user_home}" ]; then
+            /bin/launchctl asuser "${console_uid}" /usr/bin/sudo -u "${console_user}" \
+                /usr/bin/env HOME="${user_home}" "${deployer}" --build \
+                "${user_home}/Library/Rime" "${shared_data}" \
+                "${user_home}/Library/Rime/build" >/dev/null 2>&1 || true
+        fi
+        /bin/launchctl asuser "${console_uid}" /usr/bin/sudo -u "${console_user}" \
+            "${executable}" --enable-input-source "${source_id}" >/dev/null 2>&1 || true
+        /bin/launchctl asuser "${console_uid}" /usr/bin/sudo -u "${console_user}" \
+            "${executable}" --select-input-source "${source_id}" >/dev/null 2>&1 || true
+    fi
+fi
+
+exit 0

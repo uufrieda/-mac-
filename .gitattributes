@@ -1,0 +1,5 @@
+*.pkg binary
+*.icns binary
+*.pdf binary
+*.png binary
+*.strings binary
