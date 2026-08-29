@@ -1,14 +1,14 @@
 # 她先输入法
 
-她先是一款女性指代优先的 macOS 简体拼音输入法。它基于 Rime / Squirrel 1.1.2，本仓库保存“她先”新增的输入规则、界面配置、安装器脚本，以及当前可安装的 macOS 安装包。
+她先是一款女性指代优先的 macOS 简体拼音输入法。它基于 Rime / Squirrel 1.1.2，本仓库保存“她先”新增的输入规则、界面配置、安装器脚本，以及可重新生成 macOS 安装包的构建流程。
 
 GitHub Topic: `shenicest-fission`
 
 ## 当前版本
 
 - macOS: 1.1.0
-- 安装包: [dist/她先-1.1.0.pkg](dist/%E5%A5%B9%E5%85%88-1.1.0.pkg)
-- SHA-256: `1bff7e17dd4574fc1a5dcf5c27f9121abc9451e848beffed08a0b7c52277cd1e`
+- 安装包: 请在 GitHub Releases 下载 `她先-1.1.0.pkg`
+- SHA-256: `7cdc6774d0367101c1dc934d8a683cac244f12cf33c89c82811664ffdeae2e52`
 - 系统要求: macOS 13.0 或更高版本，支持 Intel 与 Apple 芯片 Mac
 
 ## 她先规则
@@ -43,9 +43,9 @@ GitHub Topic: `shenicest-fission`
 - `rime/`: 她先输入规则、Lua 候选过滤器、Rime 默认设置和 Squirrel 外观配置。
 - `package/`: macOS 安装器 Distribution、component plist、postinstall 脚本和安装器页面。
 - `macos/`: 她先 App 的 Info.plist 与本地化资源。
-- `assets/`: 她先图标和菜单资源。
-- `vendor/`: 上游 Squirrel 1.1.2 安装包，用于重建她先 macOS 版本。
-- `dist/`: 当前发布的安装包和校验值。
+- `assets/`: 图标资源说明；构建时会重新生成图标。
+- `vendor/`: 上游 Squirrel 1.1.2 获取说明；构建时会按需下载。
+- `dist/`: 发布安装包校验值；本地构建会在这里生成安装包。
 - `tools/`: 候选词验证程序和辅助源码。
 - `scripts/`: 本地重建与验证脚本。
 - `docs/`: 面向用户的安装说明。
@@ -55,17 +55,17 @@ GitHub Topic: `shenicest-fission`
 在 macOS 上运行：
 
 ```bash
-scripts/build-macos-package.sh
+bash scripts/build-macos-package.sh
 ```
 
-生成结果会写入 `dist/她先-1.1.0.pkg` 和 `dist/她先-1.1.0.sha256.txt`。
+脚本会按需下载 Squirrel 1.1.2，重新生成她先图标，并输出 `dist/她先-1.1.0.pkg` 和 `dist/她先-1.1.0.sha256.txt`。
 
 ## 验证候选词
 
 先运行构建脚本，再运行：
 
 ```bash
-scripts/verify-macos-candidates.sh
+bash scripts/verify-macos-candidates.sh
 ```
 
 验证会检查她先模式、中性模式、常规模式，以及职业联想和褒义联想开关。
